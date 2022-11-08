@@ -1,0 +1,47 @@
+.indiv,.weight_indiv{
+    display:flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.france,.france_weight,.france_len_vol{
+    border-right: 1px solid #ccc;
+    padding-right: 2rem;
+}
+.spain,.spain_weight,.spain_len_vol{
+    margin-left: 2rem;
+}
+
+
+.weight_france_unit,.weight_spain_unit{
+    width: 10px;
+    margin-right: 1rem;
+}
+
+.france_price,.spain_price,.france_deliv_price,.spain_deliv_price{
+    width: 50px;
+}
+
+.len_unit{
+    width: 20px;
+}
+
+.L_input{
+    width: 40px;
+}
+
+.france,.spain{
+    display:flex;
+
+}
+.info_box_left{
+    border-right: 2px solid red;
+}
+.info_box_right{
+    border-left:2px solid red;
+}
+
+
+.deliv_span{
+}
