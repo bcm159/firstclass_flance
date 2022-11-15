@@ -5,6 +5,7 @@ import Price from './components/Price'
 import Volume from './components/Volume';
 import Weight from './components/Weight';
 import Deliv from './components/Deliv';
+import Simple from './components/SImple';
 import { useEffect, useState } from 'react';
 
 
@@ -48,6 +49,7 @@ function App() {
       <Deliv franceWeight={franceWeight} franceVolume={franceVolume}
         spainWeight={spainWeight} spainVolume={spainVolume}
         france_price_result={france_price_result} spain_price_result={spain_price_result}/>
+      <Simple />
     </div>
   );
 }
