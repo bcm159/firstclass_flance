@@ -153,11 +153,113 @@ const Deliver_price_america = ({exchange_won,country,volume_up,america_deliver_p
         {"pound":149,"price":260.1,"price2":257.5,"price3":254.9,"price4":252.3,"price5":249.7,"price6":247.1,"price7":228.00},
         {"pound":150,"price":261.8,"price2":259.18,"price3":256.56,"price4":253.95,"price5":251.33,"price6":248.71,"price7":229.50}
         ]
+
+        const two_usa_delivery = [ 
+            {"pound":1,"price":7.80},
+            {"pound":2,"price":7.80},
+            {"pound":3,"price":9.40},
+            {"pound":4,"price":11.00},
+            {"pound":5,"price":12.60},
+            {"pound":6,"price":14.20},
+            {"pound":7,"price":15.80},
+            {"pound":8,"price":17.40},
+            {"pound":9,"price":19.00},
+            {"pound":10,"price":20.60},
+            {"pound":11,"price":22.20},
+            {"pound":12,"price":23.80},
+            {"pound":13,"price":25.40},
+            {"pound":14,"price":27.00},
+            {"pound":15,"price":28.60},
+            {"pound":16,"price":30.20},
+            {"pound":17,"price":31.80},
+            {"pound":18,"price":33.40},
+            {"pound":19,"price":35.00},
+            {"pound":20,"price":36.60},
+            {"pound":21,"price":38.20},
+            {"pound":22,"price":39.80},
+            {"pound":23,"price":41.40},
+            {"pound":24,"price":43.00},
+            {"pound":25,"price":44.60},
+            {"pound":26,"price":46.20},
+            {"pound":27,"price":47.80},
+            {"pound":28,"price":49.40},
+            {"pound":29,"price":51.00},
+            {"pound":30,"price":52.60},
+            {"pound":31,"price":54.20},
+            {"pound":32,"price":55.80},
+            {"pound":33,"price":57.40},
+            {"pound":34,"price":59.00},
+            {"pound":35,"price":60.60},
+            {"pound":36,"price":62.20},
+            {"pound":37,"price":63.80},
+            {"pound":38,"price":65.40},
+            {"pound":39,"price":67.00},
+            {"pound":40,"price":68.60},
+            {"pound":41,"price":70.20},
+            {"pound":42,"price":71.80},
+            {"pound":43,"price":73.40},
+            {"pound":44,"price":75.00},
+            {"pound":45,"price":76.60},
+            {"pound":46,"price":78.20},
+            {"pound":47,"price":79.80},
+            {"pound":48,"price":81.40},
+            {"pound":49,"price":83.00},
+            {"pound":50,"price":84.60},
+            {"pound":51,"price":86.20},
+            {"pound":52,"price":87.80},
+            {"pound":53,"price":89.40},
+            {"pound":54,"price":91.00},
+            {"pound":55,"price":92.60},
+            {"pound":56,"price":94.20},
+            {"pound":57,"price":95.80},
+            {"pound":58,"price":97.40},
+            {"pound":59,"price":99.00},
+            {"pound":60,"price":100.60},
+            {"pound":61,"price":102.20},
+            {"pound":62,"price":103.80},
+            {"pound":63,"price":105.40},
+            {"pound":64,"price":107.00},
+            {"pound":65,"price":108.60},
+            {"pound":66,"price":110.20},
+            {"pound":67,"price":111.80},
+            {"pound":68,"price":113.40},
+            {"pound":69,"price":115.00},
+            {"pound":70,"price":116.60},
+            {"pound":71,"price":118.20},
+            {"pound":72,"price":119.80},
+            {"pound":73,"price":121.40},
+            {"pound":74,"price":123.00},
+            {"pound":75,"price":124.60},
+            {"pound":76,"price":126.20},
+            {"pound":77,"price":127.80},
+            {"pound":78,"price":129.40},
+            {"pound":79,"price":131.00},
+            {"pound":80,"price":132.60},
+            {"pound":81,"price":134.20},
+            {"pound":82,"price":135.80},
+            {"pound":83,"price":137.40},
+            {"pound":84,"price":139.00},
+            {"pound":85,"price":140.60},
+            {"pound":86,"price":142.20},
+            {"pound":87,"price":143.80},
+            {"pound":88,"price":145.40},
+            {"pound":89,"price":147.00},
+            {"pound":90,"price":148.60},
+            {"pound":91,"price":150.20},
+            {"pound":92,"price":151.80},
+            {"pound":93,"price":153.40},
+            {"pound":94,"price":155.00},
+            {"pound":95,"price":156.60},
+            {"pound":96,"price":158.20},
+            {"pound":97,"price":159.80},
+            {"pound":98,"price":161.40},
+            {"pound":99,"price":163.00},
+            {"pound":100,"price":164.60}];
         let volume_deliv = 0;
     
         if(country === 'america'){ 
-            for(let i of usa_delivery){
-                if(i['pound'] ===  volume_up){
+            for(let i of two_usa_delivery){
+                if(i['pound'] ===  volume_up){                                     
                     //setGermany_volume_price(i['price']);
                     volume_deliv = i['price'];
                     
@@ -167,10 +269,10 @@ const Deliver_price_america = ({exchange_won,country,volume_up,america_deliver_p
         let volume_deliv_won = (parseFloat(volume_deliv) * exchange_won).toFixed(2);
         let volume_deliv_won_point = (volume_deliv_won).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         america_deliver_price(volume_deliv_won);
-   
-    return (
+    
+    return (    
         <div className={country === 'america' ? '':'simple_display'}>
-            <p>{volume_deliv}</p>
+            <p>{volume_deliv}달러</p>
             <p>{volume_deliv_won_point}원</p>
         </div>
     );
