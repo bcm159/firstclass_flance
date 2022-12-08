@@ -67,9 +67,9 @@ const SImple = () => {
 	
 
     let simple_price_won = simple_price * exchange_won;
-	let simple_price_won_point = String(simple_price_won).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	let simple_price_won_point = String(simple_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-	let simple_sum_price  = parseFloat(simple_price_won) + parseFloat(simple_deliv);
+	let simple_sum_price  = parseFloat(simple_price_won.toFixed(2)) + parseFloat(simple_deliv);
     return (
         <div className='simple_div'>
             <h1></h1>
@@ -80,7 +80,7 @@ const SImple = () => {
                 value={simple_price}
                 className ="simple_price"
             />
-            <p>한화 : {simple_price_won_point}</p>
+            <p>한화 : {(simple_price_won_point)}</p>
             <select onChange={changeCountry} value = {country} className="simple_selectBox">
                 <option value="germany">germany</option>
                 <option value="america">america</option>

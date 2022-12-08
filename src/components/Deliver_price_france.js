@@ -61,7 +61,7 @@ const Deliver_price_france = ({exchange_won,country,volume_up,france_deliver_pri
         france_deliver_price(volume_deliv_won);
     return (
         <div className={country === 'france' ? '':'simple_display'}>
-            <p>{volume_deliv}</p>
+            <p>{volume_deliv}유로</p>
             <p>{volume_deliv_won_point}원</p>
         </div>
     );
