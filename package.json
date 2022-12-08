@@ -12,7 +12,7 @@
     "react-select": "^5.6.0",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://bcm159.github.io/firstclass_flance",
+  "homepage": "https://bcm159.github.io/firstclass_flance/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
