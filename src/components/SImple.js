@@ -70,6 +70,11 @@ const SImple = () => {
 	let simple_price_won_point = String(simple_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 	let simple_sum_price  = parseFloat(simple_price_won.toFixed(2)) + parseFloat(simple_deliv);
+
+	let twn_price_won = (simple_sum_price)*1.2;
+	let twn_price_won_point = String(twn_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+
     return (
         <div className='simple_div'>
             <h1></h1>
@@ -122,7 +127,8 @@ const SImple = () => {
 			<Deliver_price exchange_won={exchange_won} country={country} volume_up={volume_up} germany_deliver_price={germany_deliver_price} />
 			<Deliver_price_america exchange_won={exchange_won} country={country} volume_up={volume_up} america_deliver_price={america_deliver_price} />
             <Deliver_price_france exchange_won={exchange_won} country={country} volume_up={volume_up} france_deliver_price={france_deliver_price}/>
-			<span>비용 + 배송비 : {simple_sum_price}</span> 
+			<p>비용 + 배송비 : {simple_sum_price}</p> 
+			<p>20% 비용 : {twn_price_won_point}</p> 
 
         </div>
     );
