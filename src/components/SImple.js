@@ -3,24 +3,35 @@ import Select from 'react-select';
 import Deliver_price from './Deliver_price';
 import Deliver_price_america from './Deliver_price_america';
 import Deliver_price_france from './Deliver_price_france';
+import Deliver_price_itary from './Deliver_price_italt';
+import Deliver_price_australia from './Deliver_price_australia';
+
 
 const SImple = () => {
    
     //환율
     const exchange_won = 1400;
 
+	
+
     const [inputs,setInputs] = useState({
         simple_price:'',
         simple_volume_germany:'',
 		simple_volume_america:'',
-		simple_volume_france:''
+		simple_volume_france:'',
+		simple_volume_italy:'',
+		simple_volume_australia:''
+		
     })
     const [country,setCountry] = useState("germany");
     const [germany_volume_price,setGermany_volume_price] = useState('');
     const [america_volume_price,setAmerica_volume_price] = useState('');
     const [france_volume_price,setFrance_volume_price] = useState('');
+    const [italy_volume_price,setItaly_volume_price] = useState('');
+    const [australia_volume_price,setAustralia_volume_price] = useState('');
 
-    const {simple_price,simple_volume_germany,simple_volume_america,simple_volume_france} = inputs;
+    const {simple_price,simple_volume_germany,simple_volume_america,simple_volume_france,simple_volume_italy,simple_volume_australia} = inputs;
+
 
     const onChange = (e) =>{
         const { value,name} = e.target;
@@ -44,6 +55,12 @@ const SImple = () => {
 	const france_deliver_price = (v) =>{
 		setFrance_volume_price(v);
 	}
+	const italy_deliver_price = (v) =>{
+		setItaly_volume_price(v);
+	}
+	const australia_deliver_price = (v) =>{
+		setAustralia_volume_price(v);
+	}
 	let simple_volume = 0;
 	let volume_up = 0;
 	let simple_deliv = 0;
@@ -59,6 +76,14 @@ const SImple = () => {
 		simple_volume = simple_volume_france;
 		volume_up= (Math.ceil(parseFloat(simple_volume) * 2))/2;
 		simple_deliv = france_volume_price;
+	} else if(country ==='italy'){
+		simple_volume = simple_volume_italy;
+		volume_up= (Math.ceil(parseFloat(simple_volume) * 2))/2;
+		simple_deliv = italy_volume_price;
+	} else if(country ==='australia'){
+		simple_volume = simple_volume_australia;
+		volume_up= (Math.ceil(parseFloat(simple_volume)));
+		simple_deliv = australia_volume_price;
 	}
 	
 	
@@ -90,6 +115,8 @@ const SImple = () => {
                 <option value="germany">germany</option>
                 <option value="america">america</option>
                 <option value="france">france</option>
+                <option value="italy">italy</option>
+                <option value="australia">australia</option>
             </select>
 			<div className={country ==='germany'? 'simple_vol_div' : 'simple_display'}>
 
@@ -124,9 +151,33 @@ const SImple = () => {
 				/>
 				<span> kg</span>
 			</div>
+			<div className={country ==='italy'? 'simple_vol_div' : 'simple_display'}>
+
+				<span>무게 입력 : </span>
+				<input 
+					name="simple_volume_italy"
+					onChange={onChange}
+					value={simple_volume_italy}
+					className ="simple_volume_italy"
+				/>
+				<span> kg</span>
+			</div>
+			<div className={country ==='australia'? 'simple_vol_div' : 'simple_display'}>
+
+				<span>무게 입력 : </span>
+				<input 
+					name="simple_volume_australia"
+					onChange={onChange}
+					value={simple_volume_australia}
+					className ="simple_volume_australia"
+				/>
+				<span> kg</span>
+			</div>
 			<Deliver_price exchange_won={exchange_won} country={country} volume_up={volume_up} germany_deliver_price={germany_deliver_price} />
 			<Deliver_price_america exchange_won={exchange_won} country={country} volume_up={volume_up} america_deliver_price={america_deliver_price} />
             <Deliver_price_france exchange_won={exchange_won} country={country} volume_up={volume_up} france_deliver_price={france_deliver_price}/>
+            <Deliver_price_itary exchange_won={exchange_won} country={country} volume_up={volume_up} italy_deliver_price={italy_deliver_price}/>
+            <Deliver_price_australia exchange_won={exchange_won} country={country} volume_up={volume_up} australia_deliver_price={australia_deliver_price}/>
 			<p>비용 + 배송비 : {simple_sum_price}</p> 
 			<p>20% 비용 : {twn_price_won_point}</p> 
 
