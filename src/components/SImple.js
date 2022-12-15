@@ -32,7 +32,8 @@ const SImple = () => {
 
     const {simple_price,simple_volume_germany,simple_volume_america,simple_volume_france,simple_volume_italy,simple_volume_australia} = inputs;
 
-
+	
+	
     const onChange = (e) =>{
         const { value,name} = e.target;
         setInputs({
