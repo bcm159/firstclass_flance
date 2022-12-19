@@ -11,7 +11,7 @@ const SImple = () => {
    
     //환율
     const exchange_won = 1400;
-
+	const exchange_au_won = 920;
 	
 
     const [inputs,setInputs] = useState({
@@ -90,28 +90,43 @@ const SImple = () => {
 	
     
 
-	
+	let simple_au_price_won = simple_price *exchange_au_won;
+	let simple_au_price_won_point = String(simple_au_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     let simple_price_won = simple_price * exchange_won;
 	let simple_price_won_point = String(simple_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 	let simple_sum_price  = parseFloat(simple_price_won.toFixed(2)) + parseFloat(simple_deliv);
+	let simple_au_sum_price  = parseFloat(simple_au_price_won.toFixed(2)) + parseFloat(simple_deliv);
 
 	let twn_price_won = (simple_sum_price)*1.2;
 	let twn_price_won_point = String(twn_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	let twn_au_price_won = (simple_au_sum_price)*1.2;
+	let twn_au_price_won_point = String(twn_au_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 
     return (
         <div className='simple_div'>
-            <h1></h1>
-            <span>가격 입력 : </span>
-            <input
-                name="simple_price"
-                onChange={onChange}
-                value={simple_price}
-                className ="simple_price"
-            />
-            <p>한화 : {(simple_price_won_point)}</p>
+			<div className={country ==='australia'? 'australia_price' : 'simple_display'}>
+				<span>가격 입력 : </span>
+				<input
+					name="simple_price"
+					onChange={onChange}
+					value={simple_price}
+					className ="simple_price"
+				/>
+				<p>한화 : {(simple_au_price_won_point)}</p>
+			</div>
+			<div className={country !=='australia'? 'australia_price' : 'simple_display'}>
+				<span>가격 입력 : </span>
+				<input
+					name="simple_price"
+					onChange={onChange}
+					value={simple_price}
+					className ="simple_price"
+				/>
+				<p>한화 : {(simple_price_won_point)}</p>
+			</div>
             <select onChange={changeCountry} value = {country} className="simple_selectBox">
                 <option value="germany">germany</option>
                 <option value="america">america</option>
@@ -178,10 +193,15 @@ const SImple = () => {
 			<Deliver_price_america exchange_won={exchange_won} country={country} volume_up={volume_up} america_deliver_price={america_deliver_price} />
             <Deliver_price_france exchange_won={exchange_won} country={country} volume_up={volume_up} france_deliver_price={france_deliver_price}/>
             <Deliver_price_itary exchange_won={exchange_won} country={country} volume_up={volume_up} italy_deliver_price={italy_deliver_price}/>
-            <Deliver_price_australia exchange_won={exchange_won} country={country} volume_up={volume_up} australia_deliver_price={australia_deliver_price}/>
-			<p>비용 + 배송비 : {simple_sum_price}</p> 
-			<p>20% 비용 : {twn_price_won_point}</p> 
-
+            <Deliver_price_australia exchange_au_won={exchange_au_won} country={country} volume_up={volume_up} australia_deliver_price={australia_deliver_price}/>
+			<div className={country !=='australia'? 'australia_price' : 'simple_display'}>
+				<p>비용 + 배송비 : {simple_sum_price}</p> 
+				<p>20% 비용 : {twn_price_won_point}</p> 
+			</div>
+			<div className={country ==='australia'? 'australia_price' : 'simple_display'}>
+				<p>비용 + 배송비 : {simple_au_sum_price}</p> 
+				<p>20% 비용 : {twn_au_price_won_point}</p> 
+			</div>
         </div>
     );
 };

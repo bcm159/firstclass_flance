@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Deliver_price_australia = ({exchange_won,country,volume_up,australia_deliver_price}) => {
+const Deliver_price_australia = ({exchange_au_won,country,volume_up,australia_deliver_price}) => {
     const australia_table = [
         {"kg":1.0,"price":14700,"price2":14400,"price3":14100},
         {"kg":2.0,"price":17700,"price2":17200,"price3":16800},
