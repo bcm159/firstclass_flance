@@ -8,7 +8,7 @@ const Price = ({france_result_price_won,spain_result_price_won}) => {
         france_deliv_price:'',
         spain_deliv_price:''
     })
-
+                     
     const {france_price,spain_price,france_deliv_price,spain_deliv_price} = inputs;
 
     const onChange = (e) =>{
@@ -126,7 +126,7 @@ const Price = ({france_result_price_won,spain_result_price_won}) => {
                         value={spain_deliv_price}
                         className ="spain_deliv_price"
                         />
-                        <p>{result_spain}원</p>
+                        <p>{result_spain}원</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
                     </div>
                     <div className='info_box_right'>
                         <p>원가 : {spain_price} ({ex_spain_prcie})</p>
@@ -138,7 +138,8 @@ const Price = ({france_result_price_won,spain_result_price_won}) => {
                 </div>
             </div> 
         </div>
-    );
+  
+    )
 };
 
 export default Price;

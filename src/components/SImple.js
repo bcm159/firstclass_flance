@@ -103,6 +103,11 @@ const SImple = () => {
 	let twn_price_won_point = String(twn_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	let twn_au_price_won = (simple_au_sum_price)*1.2;
 	let twn_au_price_won_point = String(twn_au_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	
+	let price_include_fee = twn_price_won * 1.06;
+	let price_include_fee_point = String(price_include_fee.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	let au_price_include_fee = twn_au_price_won * 1.06;
+	let au_price_include_fee_point = String(au_price_include_fee.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 
     return (
@@ -197,10 +202,12 @@ const SImple = () => {
 			<div className={country !=='australia'? 'australia_price' : 'simple_display'}>
 				<p>비용 + 배송비 : {simple_sum_price}</p> 
 				<p>20% 비용 : {twn_price_won_point}</p> 
+				<p>네이버 수수료 포함 : {price_include_fee_point}</p>
 			</div>
 			<div className={country ==='australia'? 'australia_price' : 'simple_display'}>
 				<p>비용 + 배송비 : {simple_au_sum_price}</p> 
 				<p>20% 비용 : {twn_au_price_won_point}</p> 
+				<p>네이버 수수료 포함 : {au_price_include_fee_point}</p>
 			</div>
         </div>
     );

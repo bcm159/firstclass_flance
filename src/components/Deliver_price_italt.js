@@ -432,7 +432,7 @@ const Deliver_price_italt = ({exchange_won,country,volume_up,italy_deliver_price
                 //setGermany_volume_price(i['price']);
                 volume_deliv_won = String(i['price']);
                 
-            }
+            } 
         }
     }
     //let volume_deliv_won = (parseFloat(volume_deliv) * exchange_won).toFixed(2);
