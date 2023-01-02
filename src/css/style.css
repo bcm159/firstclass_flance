@@ -67,9 +67,39 @@
 }
 
 .australia_price{
-
+    
 }
 
 .simple_display{
     display:none;
+}
+
+.simple_price{
+    width: 30px;
+    margin-right: 3rem;
+}
+.simple_price_left{
+    margin-right: 3rem;
+}
+.simple_center{
+    display:flex;
+    justify-content: center;
+}
+.simple_left{
+}
+.simple_right{
+}
+
+.simple_center::after{
+    content: '';
+    display:block;
+    clear:both;
+}
+
+.in_deliv_price,.pro_num{
+    width: 30px;
+}
+
+#small_txt{
+    font-size: 0.8rem;
 }

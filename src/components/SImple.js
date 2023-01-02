@@ -20,7 +20,9 @@ const SImple = () => {
 		simple_volume_america:'',
 		simple_volume_france:'',
 		simple_volume_italy:'',
-		simple_volume_australia:''
+		simple_volume_australia:'',
+		in_deliv_price:'',
+		pro_num:''
 		
     })
     const [country,setCountry] = useState("germany");
@@ -29,8 +31,12 @@ const SImple = () => {
     const [france_volume_price,setFrance_volume_price] = useState('');
     const [italy_volume_price,setItaly_volume_price] = useState('');
     const [australia_volume_price,setAustralia_volume_price] = useState('');
+    const [pro_price,setPro_price] = useState(0);
+    const [pro_deliv,setPro_deliv] = useState(0);
+    const [pro_number,setPro_number] = useState(1);
 
-    const {simple_price,simple_volume_germany,simple_volume_america,simple_volume_france,simple_volume_italy,simple_volume_australia} = inputs;
+
+    const {simple_price,simple_volume_germany,simple_volume_america,simple_volume_france,simple_volume_italy,simple_volume_australia,in_deliv_price,pro_num} = inputs;
 
 	
 	
@@ -62,9 +68,11 @@ const SImple = () => {
 	const australia_deliver_price = (v) =>{
 		setAustralia_volume_price(v);
 	}
+	
 	let simple_volume = 0;
 	let volume_up = 0;
 	let simple_deliv = 0;
+
 	if(country ==='germany'){
 		simple_volume = simple_volume_germany;
 		volume_up= (Math.ceil(parseFloat(simple_volume) * 2))/2;
@@ -86,14 +94,34 @@ const SImple = () => {
 		volume_up= (Math.ceil(parseFloat(simple_volume)));
 		simple_deliv = australia_volume_price;
 	}
-	
-	
-    
 
-	let simple_au_price_won = simple_price *exchange_au_won;
+	// 갯수 예외처리
+	let count = pro_num;
+
+	if(!pro_num){
+		count = 1;
+	}
+
+	//해당국가 배송비
+	let au_in_deliv_price_won = in_deliv_price * exchange_au_won;
+	let au_in_deliv_price_won_point = String(au_in_deliv_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	
+	let in_deliv_price_won = in_deliv_price * exchange_won;
+	let in_deliv_price_won_point = String(in_deliv_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+	//비용 * 환율 -> 한화
+	let simple_au_price_won_before = simple_price *exchange_au_won;
+	let simple_au_price_won_point_before = String(simple_au_price_won_before.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	
+	
+	let simple_au_price_won = (simple_au_price_won_before * count) + au_in_deliv_price_won;
 	let simple_au_price_won_point = String(simple_au_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    let simple_price_won = simple_price * exchange_won;
+	// 여기여기!
+    let simple_price_won_before = simple_price * exchange_won;
+	let simple_price_won_before_point = String(simple_price_won_before.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    
+	let simple_price_won = (simple_price_won_before * count) + in_deliv_price_won;
 	let simple_price_won_point = String(simple_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 	let simple_sum_price  = parseFloat(simple_price_won.toFixed(2)) + parseFloat(simple_deliv);
@@ -109,27 +137,82 @@ const SImple = () => {
 	let au_price_include_fee = twn_au_price_won * 1.06;
 	let au_price_include_fee_point = String(au_price_include_fee.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
+	let test = 1;
 
     return (
         <div className='simple_div'>
 			<div className={country ==='australia'? 'australia_price' : 'simple_display'}>
-				<span>가격 입력 : </span>
-				<input
-					name="simple_price"
-					onChange={onChange}
-					value={simple_price}
-					className ="simple_price"
-				/>
-				<p>한화 : {(simple_au_price_won_point)}</p>
+				<div className='simple_center'>
+					<div className='simple_left'>	
+						<span>가격 입력 : </span>
+						<input
+							name="simple_price"
+							onChange={onChange}
+							value={simple_price}
+							className ="simple_price"
+						/>
+						<br />
+						<span id='small_txt' className='simple_price_left'>한화 : {simple_au_price_won_point_before}</span>
+					</div>
+					<div className='simple_right'>
+						<span>배송비 입력 : </span>
+						<input
+							name="in_deliv_price"
+							onChange={onChange}
+							value={in_deliv_price}
+							className ="in_deliv_price"
+						/>
+						<br/>
+						<span id='small_txt'>배송비 : {au_in_deliv_price_won_point}</span>
+						<br/>
+						<span>갯수 입력 : </span>
+						<input
+							name="pro_num"
+							onChange={onChange}
+							value={pro_num}
+							className ="pro_num"
+						/>
+						
+					</div>
+				</div>
+				<p style={{fontWeight:"500"}}>한화 : {(simple_au_price_won_point)}</p>
 			</div>
 			<div className={country !=='australia'? 'australia_price' : 'simple_display'}>
-				<span>가격 입력 : </span>
-				<input
-					name="simple_price"
-					onChange={onChange}
-					value={simple_price}
-					className ="simple_price"
-				/>
+				<div className='simple_center'>
+					<div className='simple_left'>
+						<span>가격 입력 : </span>
+						<input
+							name="simple_price"
+							onChange={onChange}z
+							value={simple_price}
+							className ="simple_price"
+						/>
+						<br />
+						<span id='small_txt' className='simple_price_left'>한화 : {simple_price_won_before_point}</span>
+					
+					</div>
+					<div className='simple_right'>
+						<span>배송비 입력 : </span>
+						<input
+							name="in_deliv_price"
+							onChange={onChange}
+							value={in_deliv_price}
+							className ="in_deliv_price"
+						/>
+						<br/>
+						<span id='small_txt'>배송비 : {in_deliv_price_won_point}</span>
+						<br/>
+						<span>갯수 입력 : </span>
+						<input
+							name="pro_num"
+							onChange={onChange}
+							value={pro_num}
+							className ="pro_num"
+							defaultValue={test}
+						/>
+						
+					</div>
+				</div>
 				<p>한화 : {(simple_price_won_point)}</p>
 			</div>
             <select onChange={changeCountry} value = {country} className="simple_selectBox">
