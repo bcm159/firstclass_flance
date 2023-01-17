@@ -73,11 +73,11 @@
 .simple_display{
     display:none;
 }
-
+    
 .simple_price{
-    width: 30px;
+    width: 60px;
     margin-right: 3rem;
-}
+}   
 .simple_price_left{
     margin-right: 3rem;
 }

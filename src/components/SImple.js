@@ -10,7 +10,7 @@ import Deliver_price_australia from './Deliver_price_australia';
 const SImple = () => {
    
     //환율
-    const exchange_won = 1400;
+    const exchange_won = 1350;
 	const exchange_au_won = 920;
 	
 
@@ -102,6 +102,9 @@ const SImple = () => {
 		count = 1;
 	}
 
+	//입력 총 값
+	let input_price_sum = ( simple_price * count ) + Number(in_deliv_price);
+
 	//해당국가 배송비
 	let au_in_deliv_price_won = in_deliv_price * exchange_au_won;
 	let au_in_deliv_price_won_point = String(au_in_deliv_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -127,14 +130,14 @@ const SImple = () => {
 	let simple_sum_price  = parseFloat(simple_price_won.toFixed(2)) + parseFloat(simple_deliv);
 	let simple_au_sum_price  = parseFloat(simple_au_price_won.toFixed(2)) + parseFloat(simple_deliv);
 
-	let twn_price_won = (simple_sum_price)*1.2;
+	let twn_price_won = (simple_sum_price) / 0.8;
 	let twn_price_won_point = String(twn_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	let twn_au_price_won = (simple_au_sum_price)*1.2;
+	let twn_au_price_won = (simple_au_sum_price)/0.8;
 	let twn_au_price_won_point = String(twn_au_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	
-	let price_include_fee = twn_price_won * 1.06;
+	let price_include_fee = simple_sum_price / 0.74;
 	let price_include_fee_point = String(price_include_fee.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	let au_price_include_fee = twn_au_price_won * 1.06;
+	let au_price_include_fee = simple_au_sum_price / 0.74;
 	let au_price_include_fee_point = String(au_price_include_fee.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 	let test = 1;
@@ -175,7 +178,7 @@ const SImple = () => {
 						
 					</div>
 				</div>
-				<p style={{fontWeight:"500"}}>한화 : {(simple_au_price_won_point)}</p>
+				<p style={{fontWeight:"500"}}>한화 : {simple_au_price_won_point} ({input_price_sum}유로)</p>
 			</div>
 			<div className={country !=='australia'? 'australia_price' : 'simple_display'}>
 				<div className='simple_center'>
@@ -213,7 +216,7 @@ const SImple = () => {
 						
 					</div>
 				</div>
-				<p>한화 : {(simple_price_won_point)}</p>
+				<p>한화 : {(simple_price_won_point)} ({input_price_sum}유로)</p>
 			</div>
             <select onChange={changeCountry} value = {country} className="simple_selectBox">
                 <option value="germany">germany</option>

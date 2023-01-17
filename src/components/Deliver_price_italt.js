@@ -424,13 +424,14 @@ const Deliver_price_italt = ({exchange_won,country,volume_up,italy_deliver_price
 		{"pound":210.0,"price":1820200,"price2":1772600,"price3":1725500}
 	];
 
+	let handling_fee = 2000;
     let volume_deliv = 0;
     let volume_deliv_won = '0';
     if(country === 'italy'){ 
         for(let i of italy_world){
             if(i['pound'] ===  volume_up){                                     
                 //setGermany_volume_price(i['price']);
-                volume_deliv_won = String(i['price']);
+                volume_deliv_won = String(i['price'] + handling_fee);
                 
             } 
         }
