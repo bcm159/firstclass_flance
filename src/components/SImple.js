@@ -9,9 +9,7 @@ import Deliver_price_australia from './Deliver_price_australia';
 
 const SImple = () => {
    
-    //환율
-    const exchange_won = 1350;
-	const exchange_au_won = 920;
+  
 	
 
     const [inputs,setInputs] = useState({
@@ -68,6 +66,15 @@ const SImple = () => {
 	const australia_deliver_price = (v) =>{
 		setAustralia_volume_price(v);
 	}
+
+	//환율
+	let exchange_won = 1350;
+	if(country === 'america'){
+		exchange_won = 1250;
+	}
+	const exchange_au_won = 920;
+
+
 	
 	let simple_volume = 0;
 	let volume_up = 0;
@@ -102,7 +109,7 @@ const SImple = () => {
 		count = 1;
 	}
 
-	//입력 총 값
+	//??입력 총 값
 	let input_price_sum = ( simple_price * count ) + Number(in_deliv_price);
 
 	//해당국가 배송비
@@ -222,6 +229,7 @@ const SImple = () => {
                 <option value="germany">germany</option>
                 <option value="america">america</option>
                 <option value="france">france</option>
+				
                 <option value="italy">italy</option>
                 <option value="australia">australia</option>
             </select>
