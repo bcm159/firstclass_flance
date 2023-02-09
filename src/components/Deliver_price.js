@@ -3,7 +3,7 @@ import React from 'react';
 const Deliver_price = ({exchange_won,country,volume_up,germany_deliver_price}) => {
     
     const germany_ding = [
-		{"volume":0.50,"price1":12.00,"price":8.00},
+		{"volume":0.50,"price1":12.00,"price":9.00},
 		{"volume":1.00,"price1":15.20,"price":9.00},
 		{"volume":1.50,"price1":18.40,"price":11.10},
 		{"volume":2.00,"price1":21.60,"price":13.20},
@@ -310,10 +310,10 @@ const Deliver_price = ({exchange_won,country,volume_up,germany_deliver_price}) =
     ]
     let volume_deliv = '0';
     if(country === 'germany'){ 
-        for(let i of germany_table){
+        for(let i of germany_ding){
             if(i['volume'] === volume_up){
                 //setGermany_volume_price(i['price']);
-                volume_deliv = String(i['price'] + 1500);
+                volume_deliv = String(i['price']);
                 
             }
         }
@@ -324,9 +324,9 @@ const Deliver_price = ({exchange_won,country,volume_up,germany_deliver_price}) =
     //     }
     // }
 
-    // let volume_deliv_won = (parseFloat(volume_deliv) * exchange_won).toFixed(2);
-	let volume_deliv_won_point = (volume_deliv).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    germany_deliver_price(volume_deliv);
+    let volume_deliv_won = (parseFloat(volume_deliv) * exchange_won).toFixed(2);
+	let volume_deliv_won_point = (volume_deliv_won).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    germany_deliver_price(volume_deliv_won);
     return (
         <div className={country === 'germany' ? '':'simple_display'}>
             <p>{volume_deliv}</p>

@@ -68,9 +68,9 @@ const SImple = () => {
 	}
 
 	//환율
-	let exchange_won = 1350;
+	let exchange_won = 1380;
 	if(country === 'america'){
-		exchange_won = 1250;
+		exchange_won = 1280;
 	}
 	const exchange_au_won = 920;
 
@@ -137,14 +137,14 @@ const SImple = () => {
 	let simple_sum_price  = parseFloat(simple_price_won.toFixed(2)) + parseFloat(simple_deliv);
 	let simple_au_sum_price  = parseFloat(simple_au_price_won.toFixed(2)) + parseFloat(simple_deliv);
 
-	let twn_price_won = (simple_sum_price) / 0.8;
+	let twn_price_won = (simple_sum_price) / 0.74;
 	let twn_price_won_point = String(twn_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	let twn_au_price_won = (simple_au_sum_price)/0.8;
+	let twn_au_price_won = (simple_au_sum_price)/0.74;
 	let twn_au_price_won_point = String(twn_au_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	
-	let price_include_fee = simple_sum_price / 0.74;
+	let price_include_fee = simple_sum_price / 0.94;
 	let price_include_fee_point = String(price_include_fee.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	let au_price_include_fee = simple_au_sum_price / 0.74;
+	let au_price_include_fee = simple_au_sum_price / 0.94;
 	let au_price_include_fee_point = String(au_price_include_fee.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 	let test = 1;
@@ -295,13 +295,13 @@ const SImple = () => {
             <Deliver_price_australia exchange_au_won={exchange_au_won} country={country} volume_up={volume_up} australia_deliver_price={australia_deliver_price}/>
 			<div className={country !=='australia'? 'australia_price' : 'simple_display'}>
 				<p>비용 + 배송비 : {simple_sum_price}</p> 
-				<p>20% 비용 : {twn_price_won_point}</p> 
 				<p>네이버 수수료 포함 : {price_include_fee_point}</p>
+				<p>최종가격 : {twn_price_won_point}</p> 
 			</div>
 			<div className={country ==='australia'? 'australia_price' : 'simple_display'}>
 				<p>비용 + 배송비 : {simple_au_sum_price}</p> 
-				<p>20% 비용 : {twn_au_price_won_point}</p> 
 				<p>네이버 수수료 포함 : {au_price_include_fee_point}</p>
+				<p>최종가격 : {twn_au_price_won_point}</p> 
 			</div>
         </div>
     );
