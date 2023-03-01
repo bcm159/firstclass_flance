@@ -433,7 +433,7 @@ const Deliver_price_france = ({exchange_won,country,volume_up,france_deliver_pri
                 if(i['euro'] ===  volume_up){
                     //setGermany_volume_price(i['price']);
                     // volume_deliv = String(i['price']);
-                    volume_deliv_won = String(i['price']);
+                    volume_deliv_won = String(i['price'] + 3000);
                     
                 }
             }

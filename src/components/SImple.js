@@ -5,6 +5,8 @@ import Deliver_price_america from './Deliver_price_america';
 import Deliver_price_france from './Deliver_price_france';
 import Deliver_price_itary from './Deliver_price_italt';
 import Deliver_price_australia from './Deliver_price_australia';
+import Deliver_price_japan from './Deliver_price_japan';
+import Deliver_price_uk from './Deliver_price_uk';
 
 
 const SImple = () => {
@@ -19,6 +21,8 @@ const SImple = () => {
 		simple_volume_france:'',
 		simple_volume_italy:'',
 		simple_volume_australia:'',
+		simple_volume_japan:'',
+		simple_volume_uk:'',
 		in_deliv_price:'',
 		pro_num:''
 		
@@ -29,12 +33,14 @@ const SImple = () => {
     const [france_volume_price,setFrance_volume_price] = useState('');
     const [italy_volume_price,setItaly_volume_price] = useState('');
     const [australia_volume_price,setAustralia_volume_price] = useState('');
+    const [japan_volume_price,setJapan_volume_price] = useState('');
+    const [uk_volume_price,setUk_volume_price] = useState('');
     const [pro_price,setPro_price] = useState(0);
     const [pro_deliv,setPro_deliv] = useState(0);
     const [pro_number,setPro_number] = useState(1);
 
 
-    const {simple_price,simple_volume_germany,simple_volume_america,simple_volume_france,simple_volume_italy,simple_volume_australia,in_deliv_price,pro_num} = inputs;
+    const {simple_price,simple_volume_germany,simple_volume_america,simple_volume_france,simple_volume_italy,simple_volume_australia,in_deliv_price,pro_num,simple_volume_japan,simple_volume_uk} = inputs;
 
 	
 	
@@ -66,14 +72,24 @@ const SImple = () => {
 	const australia_deliver_price = (v) =>{
 		setAustralia_volume_price(v);
 	}
+	const japan_deliver_price = (v) =>{
+		setJapan_volume_price(v);
+	} 
+	const uk_deliver_price = (v) =>{
+		setUk_volume_price(v);
+	} 
 
 	//환율
-	let exchange_won = 1380;
+	let exchange_won = 1430;
 	if(country === 'america'){
-		exchange_won = 1280;
+		exchange_won = 1350;
+	}else if(country =='japan'){
+		exchange_won = 9.7;
+	}else if(country =='uk'){
+		exchange_won = 1600;
 	}
 	const exchange_au_won = 920;
-
+	const exchange_jp_won = 9.7;
 
 	
 	let simple_volume = 0;
@@ -100,6 +116,14 @@ const SImple = () => {
 		simple_volume = simple_volume_australia;
 		volume_up= (Math.ceil(parseFloat(simple_volume)));
 		simple_deliv = australia_volume_price;
+	} else if(country ==='japan'){
+		simple_volume = simple_volume_japan;
+		volume_up= (Math.ceil(parseFloat(simple_volume)));
+		simple_deliv = japan_volume_price;
+	} else if(country ==='uk'){
+		simple_volume = simple_volume_uk;
+		volume_up= (Math.ceil(parseFloat(simple_volume)));
+		simple_deliv = uk_volume_price;
 	}
 
 	// 갯수 예외처리
@@ -116,6 +140,9 @@ const SImple = () => {
 	let au_in_deliv_price_won = in_deliv_price * exchange_au_won;
 	let au_in_deliv_price_won_point = String(au_in_deliv_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	
+	let jp_in_deliv_price_won = in_deliv_price * exchange_jp_won;
+	let jp_in_deliv_price_won_point = String(jp_in_deliv_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	
 	let in_deliv_price_won = in_deliv_price * exchange_won;
 	let in_deliv_price_won_point = String(in_deliv_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -126,7 +153,8 @@ const SImple = () => {
 	
 	let simple_au_price_won = (simple_au_price_won_before * count) + au_in_deliv_price_won;
 	let simple_au_price_won_point = String(simple_au_price_won.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
+	
+	
 	// 여기여기!
     let simple_price_won_before = simple_price * exchange_won;
 	let simple_price_won_before_point = String(simple_price_won_before.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -151,6 +179,7 @@ const SImple = () => {
 
     return (
         <div className='simple_div'>
+			
 			<div className={country ==='australia'? 'australia_price' : 'simple_display'}>
 				<div className='simple_center'>
 					<div className='simple_left'>	
@@ -232,6 +261,8 @@ const SImple = () => {
 				
                 <option value="italy">italy</option>
                 <option value="australia">australia</option>
+                <option value="japan">japan</option>
+                <option value="uk">UK</option>
             </select>
 			<div className={country ==='germany'? 'simple_vol_div' : 'simple_display'}>
 
@@ -288,11 +319,35 @@ const SImple = () => {
 				/>
 				<span> kg</span>
 			</div>
+			<div className={country ==='japan'? 'simple_vol_div' : 'simple_display'}>
+
+				<span>무게 입력 : </span>
+				<input 
+					name="simple_volume_japan"
+					onChange={onChange}
+					value={simple_volume_japan}
+					className ="simple_volume_japan"
+				/>
+				<span> kg</span>
+			</div>
+			<div className={country ==='uk'? 'simple_vol_div' : 'simple_display'}>
+
+				<span>무게 입력 : </span>
+				<input 
+					name="simple_volume_uk"
+					onChange={onChange}
+					value={simple_volume_uk}
+					className ="simple_volume_uk"
+				/>
+				<span> kg</span>
+			</div>
 			<Deliver_price exchange_won={exchange_won} country={country} volume_up={volume_up} germany_deliver_price={germany_deliver_price} />
 			<Deliver_price_america exchange_won={exchange_won} country={country} volume_up={volume_up} america_deliver_price={america_deliver_price} />
             <Deliver_price_france exchange_won={exchange_won} country={country} volume_up={volume_up} france_deliver_price={france_deliver_price}/>
             <Deliver_price_itary exchange_won={exchange_won} country={country} volume_up={volume_up} italy_deliver_price={italy_deliver_price}/>
             <Deliver_price_australia exchange_au_won={exchange_au_won} country={country} volume_up={volume_up} australia_deliver_price={australia_deliver_price}/>
+            <Deliver_price_japan exchange_jp_won={exchange_won} country={country} volume_up={volume_up} japan_deliver_price={japan_deliver_price}/>
+            <Deliver_price_uk exchange_uk_won={exchange_won} country={country} volume_up={volume_up} uk_deliver_price={uk_deliver_price}/>
 			<div className={country !=='australia'? 'australia_price' : 'simple_display'}>
 				<p>비용 + 배송비 : {simple_sum_price}</p> 
 				<p>네이버 수수료 포함 : {price_include_fee_point}</p>
