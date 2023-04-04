@@ -7,7 +7,8 @@ import Deliver_price_itary from './Deliver_price_italt';
 import Deliver_price_australia from './Deliver_price_australia';
 import Deliver_price_japan from './Deliver_price_japan';
 import Deliver_price_uk from './Deliver_price_uk';
-
+import Deliver_price_spain from './Deliver_price_spain';
+import Weight_chage from './Weight_chage';
 
 const SImple = () => {
    
@@ -23,6 +24,7 @@ const SImple = () => {
 		simple_volume_australia:'',
 		simple_volume_japan:'',
 		simple_volume_uk:'',
+		simple_volume_spain:'',
 		in_deliv_price:'',
 		pro_num:''
 		
@@ -35,12 +37,13 @@ const SImple = () => {
     const [australia_volume_price,setAustralia_volume_price] = useState('');
     const [japan_volume_price,setJapan_volume_price] = useState('');
     const [uk_volume_price,setUk_volume_price] = useState('');
+    const [spain_volume_price,setSpain_volume_price] = useState('');
     const [pro_price,setPro_price] = useState(0);
     const [pro_deliv,setPro_deliv] = useState(0);
     const [pro_number,setPro_number] = useState(1);
 
 
-    const {simple_price,simple_volume_germany,simple_volume_america,simple_volume_france,simple_volume_italy,simple_volume_australia,in_deliv_price,pro_num,simple_volume_japan,simple_volume_uk} = inputs;
+    const {simple_price,simple_volume_germany,simple_volume_america,simple_volume_france,simple_volume_italy,simple_volume_australia,in_deliv_price,pro_num,simple_volume_japan,simple_volume_uk,simple_volume_spain} = inputs;
 
 	
 	
@@ -77,6 +80,9 @@ const SImple = () => {
 	} 
 	const uk_deliver_price = (v) =>{
 		setUk_volume_price(v);
+	} 
+	const spain_deliver_price = (v) =>{
+		setSpain_volume_price(v);
 	} 
 
 	//환율
@@ -124,6 +130,10 @@ const SImple = () => {
 		simple_volume = simple_volume_uk;
 		volume_up= (Math.ceil(parseFloat(simple_volume)));
 		simple_deliv = uk_volume_price;
+	} else if(country ==='spain'){
+		simple_volume = simple_volume_spain;
+		volume_up= (Math.ceil(parseFloat(simple_volume)));
+		simple_deliv = spain_volume_price;
 	}
 
 	// 갯수 예외처리
@@ -179,7 +189,7 @@ const SImple = () => {
 
     return (
         <div className='simple_div'>
-			
+			<Weight_chage />
 			<div className={country ==='australia'? 'australia_price' : 'simple_display'}>
 				<div className='simple_center'>
 					<div className='simple_left'>	
@@ -263,6 +273,7 @@ const SImple = () => {
                 <option value="australia">australia</option>
                 <option value="japan">japan</option>
                 <option value="uk">UK</option>
+                <option value="spain">Spain</option>
             </select>
 			<div className={country ==='germany'? 'simple_vol_div' : 'simple_display'}>
 
@@ -341,13 +352,25 @@ const SImple = () => {
 				/>
 				<span> kg</span>
 			</div>
+			<div className={country ==='spain'? 'simple_vol_div' : 'simple_display'}>
+
+				<span>무게 입력 : </span>
+				<input 
+					name="simple_volume_spain"
+					onChange={onChange}
+					value={simple_volume_spain}
+					className ="simple_volume_spain"
+				/>
+				<span> kg</span>
+			</div>
 			<Deliver_price exchange_won={exchange_won} country={country} volume_up={volume_up} germany_deliver_price={germany_deliver_price} />
 			<Deliver_price_america exchange_won={exchange_won} country={country} volume_up={volume_up} america_deliver_price={america_deliver_price} />
             <Deliver_price_france exchange_won={exchange_won} country={country} volume_up={volume_up} france_deliver_price={france_deliver_price}/>
             <Deliver_price_itary exchange_won={exchange_won} country={country} volume_up={volume_up} italy_deliver_price={italy_deliver_price}/>
             <Deliver_price_australia exchange_au_won={exchange_au_won} country={country} volume_up={volume_up} australia_deliver_price={australia_deliver_price}/>
             <Deliver_price_japan exchange_jp_won={exchange_won} country={country} volume_up={volume_up} japan_deliver_price={japan_deliver_price}/>
-            <Deliver_price_uk exchange_uk_won={exchange_won} country={country} volume_up={volume_up} uk_deliver_price={uk_deliver_price}/>
+            <Deliver_price_uk exchange_uk_won={exchange_won} country={country} volume_up={volume_up} uk_deliver_price={uk_deliver_price} input_price_sum={input_price_sum}/>
+            <Deliver_price_spain exchange_uk_won={exchange_won} country={country} volume_up={volume_up} spain_deliver_price={spain_deliver_price}/>
 			<div className={country !=='australia'? 'australia_price' : 'simple_display'}>
 				<p>비용 + 배송비 : {simple_sum_price}</p> 
 				<p>네이버 수수료 포함 : {price_include_fee_point}</p>

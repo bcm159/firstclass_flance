@@ -309,11 +309,14 @@ const Deliver_price = ({exchange_won,country,volume_up,germany_deliver_price}) =
     
     ]
     let volume_deliv = '0';
+	let volume_before = '0';
+	const other_fee = 2.3;
     if(country === 'germany'){ 
         for(let i of germany_ding){
             if(i['volume'] === volume_up){
                 //setGermany_volume_price(i['price']);
-                volume_deliv = String(i['price']);
+                volume_deliv = String(i['price'] + other_fee);
+				volume_before = String(i['price']);
                 
             }
         }
@@ -329,7 +332,7 @@ const Deliver_price = ({exchange_won,country,volume_up,germany_deliver_price}) =
     germany_deliver_price(volume_deliv_won);
     return (
         <div className={country === 'germany' ? '':'simple_display'}>
-            <p>{volume_deliv}</p>
+            <p>{volume_deliv} (배송비:{volume_before} 안심 수수료 : {other_fee})</p>
             <p>{volume_deliv_won_point}원</p>
         </div>
     );

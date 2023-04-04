@@ -7,6 +7,7 @@ import Weight from './components/Weight';
 import Deliv from './components/Deliv';
 import Simple from './components/SImple';
 import Etc from './components/Etc';
+import Weight_chage from './components/Weight_chage';
 import { useEffect, useState } from 'react';
 
 
@@ -49,8 +50,7 @@ function App() {
       <Volume france_v={france_v} spain_v={spain_v}/>
       <Deliv franceWeight={franceWeight} franceVolume={franceVolume}
         spainWeight={spainWeight} spainVolume={spainVolume}
-        france_price_result={france_price_result} spain_price_result={spain_price_result}/>
-      <Etc /> 
+        france_price_result={france_price_result} spain_price_result={spain_price_result}/> 
       <Simple />
     </div>
   );

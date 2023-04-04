@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Deliver_price_uk = ({exchange_won,country,volume_up,uk_deliver_price}) => {
+const Deliver_price_uk = ({exchange_won,country,volume_up,uk_deliver_price,input_price_sum}) => {
 
     const uk_table=[
         {"kg":0.5,"price":10700,"price2":10400,"price3":9900},
@@ -44,25 +44,71 @@ const Deliver_price_uk = ({exchange_won,country,volume_up,uk_deliver_price}) => 
         {"kg":19.5,"price":130500,"price2":125000,"price3":119600},
         {"kg":20,"price":133500,"price2":127900,"price3":122400}
     ]
-    let handling_fee = 1500;
-    let repackage = 3000;
+    const uk_urolife_table = [
+        {"kg":0.5,"price":9450},
+        {"kg":1.0,"price":11970},
+        {"kg":1.5,"price":14500},
+        {"kg":2.0,"price":16920},
+        {"kg":2.5,"price":20340},
+        {"kg":3.0,"price":23760},
+        {"kg":3.5,"price":27120},
+        {"kg":4.0,"price":30090},
+        {"kg":4.5,"price":33260},
+        {"kg":5.0,"price":35930},
+        {"kg":6.0,"price":43160},
+        {"kg":7.0,"price":49400},
+        {"kg":8.0,"price":55630},
+        {"kg":9.0,"price":61870},
+        {"kg":10.0,"price":68700},
+        {"kg":11.0,"price":77020},
+        {"kg":12.0,"price":83350},
+        {"kg":13.0,"price":89690},
+        {"kg":14.0,"price":96030},
+        {"kg":15.0,"price":102360},
+        {"kg":16.0,"price":108700},
+        {"kg":17.0,"price":115030},
+        {"kg":18.0,"price":121370},
+        {"kg":19.0,"price":127710},
+        {"kg":20.0,"price":134040},
+        {"kg":21.0,"price":142360},
+        {"kg":22.0,"price":148690},
+        {"kg":23.0,"price":155030},
+        {"kg":24.0,"price":161370},
+        {"kg":25.0,"price":167700},
+        {"kg":26.0,"price":174040},
+        {"kg":27.0,"price":180370},
+        {"kg":28.0,"price":186710},
+        {"kg":29.0,"price":193050},
+        {"kg":30.0,"price":199380}
+    ]
+    let uk_fee = 0;
+    if(input_price_sum < 30){
+        uk_fee = 4000;
+    } else if(input_price_sum <50 && input_price_sum >= 30){
+        uk_fee = 6000;
+    } else{
+        uk_fee = 8000;
+    }
+
     let volume_deliv = 0;
     let volume_deliv_won = '0';
     if(country === 'uk'){ 
-        for(let i of uk_table){
-            if(i['kg'] ===  volume_up){                 
-                volume_deliv_won = String(i['price'] + handling_fee + repackage);
+        for(let i of uk_urolife_table){
+            if(i['kg'] ===  volume_up){    
+                volume_deliv = i['price'];    
+                volume_deliv_won = String(i['price'] + uk_fee);
             } 
         }
     }
+    
     //let volume_deliv_won = (parseFloat(volume_deliv) * exchange_won).toFixed(2);
     let volume_deliv_won_point = (volume_deliv_won).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     uk_deliver_price(volume_deliv_won);
-    
+    console.log(uk_fee);
     return (
         <div className={country === 'uk' ? '':'simple_display'}>
             {/* <p>{volume_deliv_won}원</p> */}
-            <p>{volume_deliv_won_point}원</p>
+            <p>{volume_deliv_won_point}원 (배송비 : {volume_deliv}, 수수료 : {uk_fee})</p>
         </div>
     );
 };

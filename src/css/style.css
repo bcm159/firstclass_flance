@@ -47,8 +47,7 @@
 }
 
 .simple_div{
-    border:1px solid red;
-    margin-top: 10rem;
+    margin-top: 2rem;
 }
 
 .simple_selectBox{
@@ -102,4 +101,12 @@
 
 #small_txt{
     font-size: 0.8rem;
+}
+
+.input_gr_po>.input_gram{
+    width: 10px;
+}
+
+.weight_change{
+    margin-bottom: 3rem;
 }
