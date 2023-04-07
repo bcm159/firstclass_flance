@@ -104,7 +104,6 @@ const Deliver_price_uk = ({exchange_won,country,volume_up,uk_deliver_price,input
     //let volume_deliv_won = (parseFloat(volume_deliv) * exchange_won).toFixed(2);
     let volume_deliv_won_point = (volume_deliv_won).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     uk_deliver_price(volume_deliv_won);
-    console.log(uk_fee);
     return (
         <div className={country === 'uk' ? '':'simple_display'}>
             {/* <p>{volume_deliv_won}원</p> */}

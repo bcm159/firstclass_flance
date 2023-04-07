@@ -332,7 +332,7 @@ const Deliver_price = ({exchange_won,country,volume_up,germany_deliver_price}) =
     germany_deliver_price(volume_deliv_won);
     return (
         <div className={country === 'germany' ? '':'simple_display'}>
-            <p>{volume_deliv} (배송비:{volume_before} 안심 수수료 : {other_fee})</p>
+            <p>{Number(volume_deliv).toFixed(2)}유로 (배송비:{volume_before} 안심 수수료 : {other_fee})</p>
             <p>{volume_deliv_won_point}원</p>
         </div>
     );

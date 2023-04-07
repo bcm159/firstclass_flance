@@ -8,6 +8,7 @@ import Deliv from './components/Deliv';
 import Simple from './components/SImple';
 import Etc from './components/Etc';
 import Weight_chage from './components/Weight_chage';
+import Germany_buy from './components/Germany_buy';
 import { useEffect, useState } from 'react';
 
 
@@ -42,16 +43,22 @@ function App() {
     setSpain_price_result(p);
   }
 
+
   return (
     <div className="App">
-      <Price france_result_price_won={france_result_price_won}
+      {/* <Price france_result_price_won={france_result_price_won}
             spain_result_price_won={spain_result_price_won}/>
       <Weight france_w={france_w} spain_w={spain_w}/>
       <Volume france_v={france_v} spain_v={spain_v}/>
       <Deliv franceWeight={franceWeight} franceVolume={franceVolume}
         spainWeight={spainWeight} spainVolume={spainVolume}
-        france_price_result={france_price_result} spain_price_result={spain_price_result}/> 
-      <Simple />
+        france_price_result={france_price_result} spain_price_result={spain_price_result}/>  */}
+      <div className='simple_center'>
+        <Germany_buy/>
+        <div className='buy_box'>
+          <Simple />
+        </div>
+      </div>
     </div>
   );
 }
