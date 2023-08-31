@@ -64,16 +64,33 @@ const Deliver_price_veit = ({exchange_won,country,volume_up,vietnam_deliver_pric
         {"kg":30,"price":197180}
     ]
 
+    let deliv_viet_won = 95000;
+
+    
     let volume_deliv_won = '0';
     if(country === 'vietnam'){ 
-        for(let i of viet_btob){
-            if(i['kg'] ===  volume_up){                                     
-                //setGermany_volume_price(i['price']);
-                volume_deliv_won = String(i['price']);
+        // for(let i of viet_btob){
+        //     if(i['kg'] ===  volume_up){                                     
+        //         //setGermany_volume_price(i['price']);
+        //         volume_deliv_won = String(i['price']);
                 
-            } 
+        //     } 
+        // }
+        if(volume_up > 0 && volume_up <= 1){
+            volume_deliv_won = String((deliv_viet_won + 50000)* Number(exchange_won));
+        } else if(volume_up >1 && volume_up <=2){
+            volume_deliv_won = String(((deliv_viet_won * volume_up) + 50000)* Number(exchange_won));
+        } else if(volume_up == 0){
+            volume_deliv_won = String(0);
         }
+        else{
+            volume_deliv_won = String((deliv_viet_won * volume_up) * Number(exchange_won));
+        }
+        
     }
+
+    
+    
     let volume_deliv_won_point = (volume_deliv_won).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     vietnam_deliver_price(volume_deliv_won);
     return (

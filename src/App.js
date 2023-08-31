@@ -9,6 +9,7 @@ import Simple from './components/SImple';
 import Etc from './components/Etc';
 import Weight_chage from './components/Weight_chage';
 import Germany_buy from './components/Germany_buy';
+import China from './components/China';
 import { useEffect, useState } from 'react';
 
 
@@ -56,7 +57,8 @@ function App() {
       <div className='simple_center'>
         <Germany_buy/>
         <div className='buy_box'>
-          <Simple />
+          <Simple/>
+          <China />
         </div>
       </div>
     </div>

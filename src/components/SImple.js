@@ -91,7 +91,7 @@ const SImple = () => {
 	} 
 
 	//환율
-	let exchange_won = 1430;
+	let exchange_won = 1450;
 	if(country === 'america'){
 		exchange_won = 1350;
 	}else if(country =='japan'){
@@ -143,7 +143,7 @@ const SImple = () => {
 		simple_deliv = spain_volume_price;
 	} else if(country ==='vietnam'){
 		simple_volume = simple_volume_vietnam;
-		volume_up= (Math.ceil(parseFloat(simple_volume)));
+		volume_up= (Math.ceil(parseFloat(simple_volume) * 2))/2;
 		simple_deliv = vietnam_volume_price;
 	}
 
@@ -243,7 +243,7 @@ const SImple = () => {
 						<span>가격 입력 : </span>
 						<input
 							name="simple_price"
-							onChange={onChange}z
+							onChange={onChange}
 							value={simple_price}
 							className ="simple_price"
 						/>
@@ -394,7 +394,7 @@ const SImple = () => {
             <Deliver_price_japan exchange_jp_won={exchange_won} country={country} volume_up={volume_up} japan_deliver_price={japan_deliver_price}/>
             <Deliver_price_uk exchange_uk_won={exchange_won} country={country} volume_up={volume_up} uk_deliver_price={uk_deliver_price} input_price_sum={input_price_sum}/>
             <Deliver_price_spain exchange_uk_won={exchange_won} country={country} volume_up={volume_up} spain_deliver_price={spain_deliver_price}/>
-			<Deliver_price_veit exchange_uk_won={exchange_won} country={country} volume_up={volume_up} vietnam_deliver_price={vietnam_deliver_price}/>
+			<Deliver_price_veit exchange_won={exchange_won} country={country} volume_up={volume_up} vietnam_deliver_price={vietnam_deliver_price}/>
             <div className={country !=='australia'? 'australia_price' : 'simple_display'}>
 				<p>비용 + 배송비 : {simple_sum_price}</p> 
 				<p>네이버 수수료 포함 : {price_include_fee_point}</p>
